@@ -118,3 +118,17 @@ Git repo-তে পুশ করতে পারো (private repo) অথবা 
 এই baseline থাকলে তোমার স্যার খুব খুশি হবে, আর পরে কোনো সমস্যা হলে রোলব্যাক করা সহজ হবে।
 
 যদি কোনো নির্দিষ্ট ডিস্ট্রো (Ubuntu/CentOS/Rocky) বলো, আমি আরো স্পেসিফিক স্ক্রিপ্ট দিতে পারি। শুভকামনা!
+
+
+# ১. সব world-writable ফাইল (sticky bit ছাড়া)
+find / -type f -perm -o+w ! -perm -1000 2>/dev/null
+
+# ২. সব world-writable ডিরেক্টরি (sticky bit ছাড়া) ← সবচেয়ে বিপজ্জনক
+find / -type d -perm -o+w ! -perm -1000 2>/dev/null
+
+# ৩. সাধারণ বিপজ্জনক জায়গা চেক
+ls -la /tmp /var/tmp /dev/shm
+df -h | grep -E "(tmp|shm)"
+
+# ৪. গুরুত্বপূর্ণ ফাইল world-writable কিনা
+ls -la /etc/passwd /etc/shadow /etc/crontab /etc/cron.d/ /root/.ssh/authorized_keys
