@@ -1,0 +1,3 @@
+sudo date -s "2026-02-26 $(date +%H:%M:%S)" && sudo hwclock --systohc
+
+sudo date -s "2026-03-30 $(date +%H:%M:%S)" && sudo hwclock --systohc
