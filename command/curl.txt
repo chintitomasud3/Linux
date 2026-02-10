@@ -1,0 +1,3 @@
+# to get the certificate using crt.sh using curl
+
+ curl -s https://crt.sh/\?q\=inlanefreight.com\&output\=json | jq .
